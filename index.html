@@ -4,6 +4,7 @@
   Questions: 40 across 8 categories
   Brand: Archivo Black + Questrial fonts, #0E4C81, #FFD700, #FAFAFA
   Includes: FAQ Schema markup for AEO, Category accordions, Question accordions
+  FIXED: iframe height auto-resize, links open in parent window
 -->
 
 <!-- Google Fonts - Add to page <head> if not already loaded -->
@@ -91,7 +92,7 @@
     },
     {
       "@type": "Question",
-      "name": "How does a hazmat emergency response service work?",
+      "name": "How does a hazmat emergency response phone service work?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "When an incident occurs, emergency responders call the number listed on your shipping documents. A trained hazmat specialist answers immediately, accesses your product information from a secure database, and provides guidance on containment, cleanup, and first aid specific to your materials. The service operates continuously and maintains current Safety Data Sheets for all registered products to ensure accurate response information."
@@ -118,7 +119,7 @@
       "name": "How quickly are emergency calls answered?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Professional emergency response services typically answer calls within seconds. Hazmat Line answers most calls in under 10 seconds with live operators. Fast response times are critical during hazmat incidents when delays can escalate dangers to responders, the public, and the environment. Response time is an important factor when evaluating providers."
+        "text": "Professional emergency response phone services typically answer calls within seconds. Hazmat Line answers most calls in under 10 seconds with live operators. Fast response times are critical during hazmat incidents when delays can escalate dangers to responders, the public, and the environment. Response time is an important factor when evaluating providers."
       }
     },
     {
@@ -147,7 +148,7 @@
     },
     {
       "@type": "Question",
-      "name": "What industries need hazmat emergency response services?",
+      "name": "What industries need hazmat emergency response phone services?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Emergency response services are essential for any company that ships, manufactures, stores, or handles hazardous materials. This includes chemical manufacturers, oil and gas companies, pharmaceutical producers, agrochemical distributors, cosmetics companies, automotive and aerospace manufacturers, mining operations, industrial gas suppliers, paint and coatings producers, waste management companies, and retailers selling hazardous products."
@@ -171,15 +172,15 @@
     },
     {
       "@type": "Question",
-      "name": "How much does a hazmat emergency response service cost?",
+      "name": "How much does a hazmat emergency response phone service cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Costs vary significantly by provider. Legacy providers may use zone-based pricing starting around $1,000 for basic domestic coverage, plus additional fees per affiliate location (estimated $250+), per emergency contact (estimated $200+), and call overages. These add-ons can double the actual cost. Hazmat Line offers flat-rate pricing at $599/year for domestic US coverage with unlimited calls, affiliates, and contacts included—saving companies an estimated 50-77% compared to legacy providers."
+        "text": "Hazmat Line offers transparent flat-rate pricing: $599/year for Domestic (1 country), $2,250/year for International Tier 1 (3 countries), and $4,200/year for International Tier 2 (unlimited countries). All plans include unlimited calls, affiliates, and contacts. Legacy providers often charge $1,000+ for basic coverage plus hidden fees per affiliate ($250+), per contact ($200+), and call overages—doubling the actual cost. Hazmat Line saves companies 50-77% compared to legacy providers."
       }
     },
     {
       "@type": "Question",
-      "name": "How long does it take to set up emergency response coverage?",
+      "name": "How long does it take to set up emergency response phone coverage?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Hazmat Line activates your emergency response number within one business day of receiving your product information and Safety Data Sheets. This includes entering all materials into the response database and verifying accuracy. Your assigned phone number is ready to use immediately upon confirmation, allowing you to update shipping documents right away without delays to your operations."
@@ -190,12 +191,12 @@
       "name": "Can I switch from another emergency response provider?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, switching providers is straightforward. Most emergency response services operate on annual contracts, so timing your switch depends on your current renewal date. If you're locked into a contract, you can submit your renewal date and Hazmat Line will contact you 60 days before with a personalized quote and transition plan. Once your new account is active, you simply update the emergency number on your shipping documents and labels."
+        "text": "Yes, switching providers is straightforward. Most emergency response phone services operate on annual contracts, so timing your switch depends on your current renewal date. If you're locked into a contract, you can submit your renewal date and Hazmat Line will contact you 60 days before with a personalized quote and transition plan. Once your new account is active, you simply update the emergency number on your shipping documents and labels."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I pay for emergency response services in my local currency?",
+      "name": "Can I pay for emergency response phone services in my local currency?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes, some providers offer flexible billing in multiple currencies. Hazmat Line bills in your preferred currency, which simplifies global accounting and eliminates import bureaucracy for international companies. Legacy providers typically invoice only in USD or EUR, creating additional administrative work for finance teams managing multi-country operations. Flexible billing is particularly valuable for companies with subsidiaries or operations across different regions."
@@ -433,6 +434,7 @@
     border-radius: 50px;
     outline: none;
     transition: all 0.3s ease;
+    box-sizing: border-box;
   }
 
   .faq-search__input:focus {
@@ -658,13 +660,11 @@
   }
 
   .faq-category__content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+    display: none;
   }
 
   .faq-category__content[aria-hidden="false"] {
-    max-height: 8000px;
+    display: block;
   }
 
   .faq-category__questions {
@@ -731,13 +731,11 @@
   }
 
   .faq-item__answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    display: none;
   }
 
   .faq-item__answer[aria-hidden="false"] {
-    max-height: 1000px;
+    display: block;
   }
 
   .faq-item__answer-content {
@@ -828,17 +826,6 @@
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
   }
 
-  .faq-page__cta-btn--secondary {
-    background: transparent;
-    color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-  }
-
-  .faq-page__cta-btn--secondary:hover {
-    border-color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
   /* Mobile Responsive */
   @media (max-width: 768px) {
     .faq-page {
@@ -901,7 +888,7 @@
   <!-- Header -->
   <header class="faq-page__header">
     <h1 class="faq-page__title">Frequently Asked Questions</h1>
-    <p class="faq-page__subtitle">Everything you need to know about hazmat emergency response services, regulatory compliance, and how Hazmat Line can help.</p>
+    <p class="faq-page__subtitle">Everything you need to know about hazmat emergency response phone services, regulatory compliance, and how Hazmat Line can help.</p>
   </header>
 
   <!-- Search Box -->
@@ -1067,7 +1054,7 @@
             </button>
             <div class="faq-item__answer" id="q7-answer" aria-hidden="true">
               <div class="faq-item__answer-content">
-                DOT fines for emergency response telephone number violations vary by violation type. Missing emergency phone number: $4,000 - $7,500. Non-monitored phone number: $1,600 - $4,000. Inadequate phone service: $3,200 - $5,200. Incorrect emergency response information: $3,700 - $7,500. Beyond fines, companies face shipment delays, increased regulatory scrutiny, and potential liability for incident damages. Visit our <a href="https://www.hazmatline.com/pages/compliance-hub-en">Compliance Hub</a> for complete regulatory guidance.
+                DOT fines for emergency response telephone number violations vary by violation type. Missing emergency phone number: $4,000 - $7,500. Non-monitored phone number: $1,600 - $4,000. Inadequate phone service: $3,200 - $5,200. Incorrect emergency response information: $3,700 - $7,500. Beyond fines, companies face shipment delays, increased regulatory scrutiny, and potential liability for incident damages. Visit our <a href="https://www.hazmatline.com/pages/compliance-hub-en" target="_top">Compliance Hub</a> for complete regulatory guidance.
               </div>
             </div>
           </div>
@@ -1129,7 +1116,7 @@
           <!-- Q10 -->
           <div class="faq-item">
             <button class="faq-item__question" aria-expanded="false" aria-controls="q10-answer">
-              <span>How does a hazmat emergency response service work?</span>
+              <span>How does a hazmat emergency response phone service work?</span>
               <span class="faq-item__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1189,7 +1176,7 @@
             </button>
             <div class="faq-item__answer" id="q13-answer" aria-hidden="true">
               <div class="faq-item__answer-content">
-                Professional emergency response services typically answer calls within seconds. Hazmat Line answers most calls in under 10 seconds with live operators. Fast response times are critical during hazmat incidents when delays can escalate dangers to responders, the public, and the environment. Response time is an important factor when evaluating providers.
+                Professional emergency response phone services typically answer calls within seconds. Hazmat Line answers most calls in under 10 seconds with live operators. Fast response times are critical during hazmat incidents when delays can escalate dangers to responders, the public, and the environment. Response time is an important factor when evaluating providers.
               </div>
             </div>
           </div>
@@ -1268,7 +1255,7 @@
           <!-- Q17 -->
           <div class="faq-item">
             <button class="faq-item__question" aria-expanded="false" aria-controls="q17-answer">
-              <span>What industries need hazmat emergency response services?</span>
+              <span>What industries need hazmat emergency response phone services?</span>
               <span class="faq-item__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1339,7 +1326,7 @@
           <!-- Q20 -->
           <div class="faq-item">
             <button class="faq-item__question" aria-expanded="false" aria-controls="q20-answer">
-              <span>How much does a hazmat emergency response service cost?</span>
+              <span>How much does a hazmat emergency response phone service cost?</span>
               <span class="faq-item__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1348,7 +1335,7 @@
             </button>
             <div class="faq-item__answer" id="q20-answer" aria-hidden="true">
               <div class="faq-item__answer-content">
-                Costs vary significantly by provider. Legacy providers may use zone-based pricing starting around $1,000 for basic domestic coverage, plus additional fees per affiliate location (estimated $250+), per emergency contact (estimated $200+), and call overages. These add-ons can double the actual cost. Hazmat Line offers flat-rate pricing at $599/year for domestic US coverage with unlimited calls, affiliates, and contacts included—saving companies an estimated 50-77% compared to legacy providers.
+                Hazmat Line offers transparent flat-rate pricing: <strong>$599/year</strong> for Domestic (1 country), <strong>$2,250/year</strong> for International Tier 1 (3 countries), and <strong>$4,200/year</strong> for International Tier 2 (unlimited countries). All plans include unlimited calls, affiliates, and contacts. Legacy providers often charge $1,000+ for basic coverage plus hidden fees per affiliate ($250+), per contact ($200+), and call overages—doubling the actual cost. Hazmat Line saves companies 50-77% compared to legacy providers. <a href="https://www.hazmatline.com/pages/pricing" target="_top">See all plans and pricing</a>.
               </div>
             </div>
           </div>
@@ -1356,7 +1343,7 @@
           <!-- Q21 -->
           <div class="faq-item">
             <button class="faq-item__question" aria-expanded="false" aria-controls="q21-answer">
-              <span>How long does it take to set up emergency response coverage?</span>
+              <span>How long does it take to set up emergency response phone coverage?</span>
               <span class="faq-item__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1382,7 +1369,7 @@
             </button>
             <div class="faq-item__answer" id="q22-answer" aria-hidden="true">
               <div class="faq-item__answer-content">
-                Yes, switching providers is straightforward. Most emergency response services operate on annual contracts, so timing your switch depends on your current renewal date. If you're locked into a contract, you can <a href="https://form.jotform.com/253286080355660" target="_blank" rel="noopener">submit your renewal date</a> and Hazmat Line will contact you 60 days before with a personalized quote and transition plan. Once your new account is active, you simply update the emergency number on your shipping documents and labels.
+                Yes, switching providers is straightforward. Most emergency response phone services operate on annual contracts, so timing your switch depends on your current renewal date. If you're locked into a contract, you can <a href="https://form.jotform.com/253286080355660" target="_top">submit your renewal date</a> and Hazmat Line will contact you 60 days before with a personalized quote and transition plan. Once your new account is active, you simply update the emergency number on your shipping documents and labels.
               </div>
             </div>
           </div>
@@ -1390,7 +1377,7 @@
           <!-- Q23 -->
           <div class="faq-item">
             <button class="faq-item__question" aria-expanded="false" aria-controls="q23-answer">
-              <span>Can I pay for emergency response services in my local currency?</span>
+              <span>Can I pay for emergency response phone services in my local currency?</span>
               <span class="faq-item__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -1784,15 +1771,42 @@
     <h2 class="faq-page__cta-title">Still Have Questions?</h2>
     <p class="faq-page__cta-text">Our team is ready to help you find the right emergency response solution for your business.</p>
     <div class="faq-page__cta-buttons">
-      <a href="https://www.hazmatline.com/pages/reach-us" class="faq-page__cta-btn faq-page__cta-btn--primary">Contact Us</a>
+      <a href="https://www.hazmatline.com/pages/reach-us" target="_top" class="faq-page__cta-btn faq-page__cta-btn--primary">Contact Us</a>
     </div>
   </div>
 
 </div>
 
-<!-- JavaScript for Accordion and Search Functionality -->
+<!-- JavaScript for Accordion, Search, and iframe Height Communication -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // =============================================
+    // IFRAME HEIGHT AUTO-RESIZE
+    // Sends height to parent window for iframe resizing
+    // =============================================
+    function sendHeightToParent() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ type: 'setHeight', height: height + 50 }, '*');
+    }
+
+    // Send height on load
+    sendHeightToParent();
+
+    // Send height when content changes (accordions open/close)
+    const observer = new MutationObserver(function() {
+      setTimeout(sendHeightToParent, 100);
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-hidden', 'aria-expanded']
+    });
+
+    // Also send height on window resize
+    window.addEventListener('resize', sendHeightToParent);
+
     // FAQ Data for Search (includes answer text)
     const faqData = [
       { category: "Regulatory Requirements", question: "What is a 24-hour hazmat emergency response phone number?", answer: "A 24-hour hazmat emergency response phone number is a dedicated hotline monitored around the clock that provides immediate information and assistance during hazardous materials incidents. When a spill, leak, or accident occurs, emergency responders call this number to obtain details about the material and receive guidance on containment, mitigation, and first aid. This number must appear on all hazmat shipping documents to meet federal safety requirements.", answerId: "q1-answer", categoryId: "cat-regulatory" },
@@ -1804,20 +1818,20 @@
       { category: "Regulatory Requirements", question: "What are the penalties for hazmat emergency response violations?", answer: "DOT fines for emergency response telephone number violations vary by violation type. Missing emergency phone number: $4,000 - $7,500. Non-monitored phone number: $1,600 - $4,000. Inadequate phone service: $3,200 - $5,200. Incorrect emergency response information: $3,700 - $7,500. Beyond fines, companies face shipment delays, increased regulatory scrutiny, and potential liability for incident damages.", answerId: "q7-answer", categoryId: "cat-regulatory" },
       { category: "Regulatory Requirements", question: "Are limited quantity shipments exempt from the emergency number requirement?", answer: "Yes, limited quantity shipments are generally exempt from the emergency response telephone number requirement under 49 CFR 172.604(d). Excepted quantities and certain fumigated cargo are also exempt unless other hazardous materials are present. However, shippers should verify their specific classification since misidentifying a shipment as limited quantity when it does not qualify can result in compliance violations.", answerId: "q8-answer", categoryId: "cat-regulatory" },
       { category: "Regulatory Requirements", question: "Can I use a personal cell phone or voicemail as my emergency number?", answer: "No, personal cell phones and voicemail systems do not meet 49 CFR 172.604 requirements. The regulation requires the number to be monitored at all times by a person with hazmat knowledge or immediate access to such knowledge. Answering machines, call-back services, and unattended phones are explicitly prohibited. The number must connect directly to a live person capable of providing emergency response information.", answerId: "q9-answer", categoryId: "cat-regulatory" },
-      { category: "Service Basics", question: "How does a hazmat emergency response service work?", answer: "When an incident occurs, emergency responders call the number listed on your shipping documents. A trained hazmat specialist answers immediately, accesses your product information from a secure database, and provides guidance on containment, cleanup, and first aid specific to your materials. The service operates continuously and maintains current Safety Data Sheets for all registered products to ensure accurate response information.", answerId: "q10-answer", categoryId: "cat-basics" },
+      { category: "Service Basics", question: "How does a hazmat emergency response phone service work?", answer: "When an incident occurs, emergency responders call the number listed on your shipping documents. A trained hazmat specialist answers immediately, accesses your product information from a secure database, and provides guidance on containment, cleanup, and first aid specific to your materials. The service operates continuously and maintains current Safety Data Sheets for all registered products to ensure accurate response information.", answerId: "q10-answer", categoryId: "cat-basics" },
       { category: "Service Basics", question: "What role do Safety Data Sheets play in emergency response?", answer: "Safety Data Sheets (SDS) are the foundation of emergency response information. When you register with a provider, your SDS documents are entered into their database so responders can immediately access hazard information, handling procedures, and first aid measures during incidents. Keeping SDS documents current is essential—outdated information can lead to improper incident handling and increased liability.", answerId: "q11-answer", categoryId: "cat-basics" },
       { category: "Service Basics", question: "What information do I need to register my products?", answer: "You need Safety Data Sheets for all hazardous materials you ship, along with UN numbers, proper shipping names, and hazard classifications. Most providers also require basic company information, shipping volumes, and primary transportation modes. Registration typically takes a few days to ensure all product information is accurately entered into the emergency response database.", answerId: "q12-answer", categoryId: "cat-basics" },
-      { category: "Service Basics", question: "How quickly are emergency calls answered?", answer: "Professional emergency response services typically answer calls within seconds. Hazmat Line answers most calls in under 10 seconds with live operators. Fast response times are critical during hazmat incidents when delays can escalate dangers to responders, the public, and the environment. Response time is an important factor when evaluating providers.", answerId: "q13-answer", categoryId: "cat-basics" },
+      { category: "Service Basics", question: "How quickly are emergency calls answered?", answer: "Professional emergency response phone services typically answer calls within seconds. Hazmat Line answers most calls in under 10 seconds with live operators. Fast response times are critical during hazmat incidents when delays can escalate dangers to responders, the public, and the environment. Response time is an important factor when evaluating providers.", answerId: "q13-answer", categoryId: "cat-basics" },
       { category: "Service Basics", question: "What is a drill call and why is it important?", answer: "A drill call is a simulated emergency call used to test your emergency response system and train your team. It verifies that your phone number is working, that responders answer quickly, and that they have accurate information about your products. Regular drill calls help identify gaps in your emergency procedures before a real incident occurs and demonstrate due diligence for compliance audits.", answerId: "q14-answer", categoryId: "cat-basics" },
       { category: "Service Basics", question: "Can I use one emergency number for all my products?", answer: "Yes, you can use a single emergency response number for all your hazardous materials shipments. Professional providers maintain databases of all your registered products and can provide accurate information for any material when responders call. This simplifies compliance compared to managing multiple numbers for different products or divisions.", answerId: "q15-answer", categoryId: "cat-basics" },
       { category: "Service Basics", question: "What is a contract registration number?", answer: "A contract registration number identifies your company's agreement with an emergency response provider. Some regulations and shipping documents require this number alongside the emergency phone number to verify that the provider has your specific product information on file. Your provider assigns this number when you enroll and it should appear on shipping papers as specified in your service agreement.", answerId: "q16-answer", categoryId: "cat-basics" },
-      { category: "Industries and Applications", question: "What industries need hazmat emergency response services?", answer: "Emergency response services are essential for any company that ships, manufactures, stores, or handles hazardous materials. This includes chemical manufacturers, oil and gas companies, pharmaceutical producers, agrochemical distributors, cosmetics companies, automotive and aerospace manufacturers, mining operations, industrial gas suppliers, paint and coatings producers, waste management companies, and retailers selling hazardous products.", answerId: "q17-answer", categoryId: "cat-industries" },
+      { category: "Industries and Applications", question: "What industries need hazmat emergency response phone services?", answer: "Emergency response phone services are essential for any company that ships, manufactures, stores, or handles hazardous materials. This includes chemical manufacturers, oil and gas companies, pharmaceutical producers, agrochemical distributors, cosmetics companies, automotive and aerospace manufacturers, mining operations, industrial gas suppliers, paint and coatings producers, waste management companies, and retailers selling hazardous products.", answerId: "q17-answer", categoryId: "cat-industries" },
       { category: "Industries and Applications", question: "Do small businesses need a 24-hour emergency number?", answer: "Yes, the 49 CFR 172.604 requirement applies to all shippers of hazardous materials regardless of company size or shipping volume. Even businesses that ship small quantities of hazmat products must provide a compliant emergency response telephone number. Third-party providers offer cost-effective solutions for small businesses that cannot staff their own 24-hour response center.", answerId: "q18-answer", categoryId: "cat-industries" },
       { category: "Industries and Applications", question: "Do I need an emergency number for international shipments?", answer: "Yes, international hazardous materials shipments require compliant emergency response numbers under multiple regulatory frameworks. US DOT requires it for exports, while importing countries have their own requirements such as Canada's TDG regulations, European ADR, IATA DGR for air freight, and IMDG Code for ocean shipping. Many companies use providers with global coverage to maintain compliance across all transportation modes and destinations.", answerId: "q19-answer", categoryId: "cat-industries" },
-      { category: "Pricing and Subscription", question: "How much does a hazmat emergency response service cost?", answer: "Costs vary significantly by provider. Legacy providers may use zone-based pricing starting around $1,000 for basic domestic coverage, plus additional fees per affiliate location (estimated $250+), per emergency contact (estimated $200+), and call overages. These add-ons can double the actual cost. Hazmat Line offers flat-rate pricing at $599/year for domestic US coverage with unlimited calls, affiliates, and contacts included—saving companies an estimated 50-77% compared to legacy providers.", answerId: "q20-answer", categoryId: "cat-pricing" },
-      { category: "Pricing and Subscription", question: "How long does it take to set up emergency response coverage?", answer: "Hazmat Line activates your emergency response number within one business day of receiving your product information and Safety Data Sheets. This includes entering all materials into the response database and verifying accuracy. Your assigned phone number is ready to use immediately upon confirmation, allowing you to update shipping documents right away without delays to your operations.", answerId: "q21-answer", categoryId: "cat-pricing" },
-      { category: "Pricing and Subscription", question: "Can I switch from another emergency response provider?", answer: "Yes, switching providers is straightforward. Most emergency response services operate on annual contracts, so timing your switch depends on your current renewal date. If you're locked into a contract, you can submit your renewal date and Hazmat Line will contact you 60 days before with a personalized quote and transition plan. Once your new account is active, you simply update the emergency number on your shipping documents and labels.", answerId: "q22-answer", categoryId: "cat-pricing" },
-      { category: "Pricing and Subscription", question: "Can I pay for emergency response services in my local currency?", answer: "Yes, some providers offer flexible billing in multiple currencies. Hazmat Line bills in your preferred currency, which simplifies global accounting and eliminates import bureaucracy for international companies. Legacy providers typically invoice only in USD or EUR, creating additional administrative work for finance teams managing multi-country operations. Flexible billing is particularly valuable for companies with subsidiaries or operations across different regions.", answerId: "q23-answer", categoryId: "cat-pricing" },
+      { category: "Pricing and Subscription", question: "How much does a hazmat emergency response phone service cost?", answer: "Hazmat Line offers transparent flat-rate pricing: $599/year for Domestic (1 country), $2,250/year for International Tier 1 (3 countries), and $4,200/year for International Tier 2 (unlimited countries). All plans include unlimited calls, affiliates, and contacts.", answerId: "q20-answer", categoryId: "cat-pricing" },
+      { category: "Pricing and Subscription", question: "How long does it take to set up emergency response phone coverage?", answer: "Hazmat Line activates your emergency response number within one business day of receiving your product information and Safety Data Sheets. This includes entering all materials into the response database and verifying accuracy. Your assigned phone number is ready to use immediately upon confirmation, allowing you to update shipping documents right away without delays to your operations.", answerId: "q21-answer", categoryId: "cat-pricing" },
+      { category: "Pricing and Subscription", question: "Can I switch from another emergency response provider?", answer: "Yes, switching providers is straightforward. Most emergency response phone services operate on annual contracts, so timing your switch depends on your current renewal date. If you're locked into a contract, you can submit your renewal date and Hazmat Line will contact you 60 days before with a personalized quote and transition plan. Once your new account is active, you simply update the emergency number on your shipping documents and labels.", answerId: "q22-answer", categoryId: "cat-pricing" },
+      { category: "Pricing and Subscription", question: "Can I pay for emergency response phone services in my local currency?", answer: "Yes, some providers offer flexible billing in multiple currencies. Hazmat Line bills in your preferred currency, which simplifies global accounting and eliminates import bureaucracy for international companies. Legacy providers typically invoice only in USD or EUR, creating additional administrative work for finance teams managing multi-country operations. Flexible billing is particularly valuable for companies with subsidiaries or operations across different regions.", answerId: "q23-answer", categoryId: "cat-pricing" },
       { category: "International Coverage", question: "What regulations require emergency numbers outside the United States?", answer: "Multiple international regulations require emergency response telephone numbers for hazardous materials transport. These include Canada's Transportation of Dangerous Goods regulations, European ADR for road transport, IATA Dangerous Goods Regulations for air shipments, IMDG Code for ocean freight, and various national requirements like Brazil's ABNT NBR 14725. Requirements vary by country and transportation mode.", answerId: "q24-answer", categoryId: "cat-international" },
       { category: "International Coverage", question: "Do I need different phone numbers for each country I ship to?", answer: "Not necessarily. Some providers offer unified global coverage with a single point of contact that routes calls to native-language specialists. Others require separate numbers for each region. Unified solutions simplify compliance documentation and avoid confusion during emergencies. When evaluating providers, ask about their geographic coverage and how they handle multilingual emergency calls.", answerId: "q25-answer", categoryId: "cat-international" },
       { category: "International Coverage", question: "Is language support available for non-English emergencies?", answer: "Quality international providers offer native-language support rather than relying on interpreter services. During an emergency, translation delays can be dangerous. Native-speaking hazmat specialists can communicate directly with local responders, understand regional terminology, and provide faster, clearer guidance. Verify which languages a provider supports before enrolling if you ship internationally.", answerId: "q26-answer", categoryId: "cat-international" },
@@ -1971,6 +1985,9 @@
             setTimeout(() => {
               questionButton.style.background = '';
             }, 2000);
+            
+            // Update iframe height after accordion expands
+            sendHeightToParent();
           }, 100);
         }
       }
@@ -2012,6 +2029,9 @@
         
         this.setAttribute('aria-expanded', !expanded);
         content.setAttribute('aria-hidden', expanded);
+        
+        // Update iframe height after toggle
+        setTimeout(sendHeightToParent, 100);
       });
     });
 
@@ -2026,6 +2046,9 @@
         
         this.setAttribute('aria-expanded', !expanded);
         answer.setAttribute('aria-hidden', expanded);
+        
+        // Update iframe height after toggle
+        setTimeout(sendHeightToParent, 100);
       });
     });
 
@@ -2049,6 +2072,9 @@
           
           // Scroll to element
           targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // Update iframe height
+          setTimeout(sendHeightToParent, 100);
         }
       });
     });
